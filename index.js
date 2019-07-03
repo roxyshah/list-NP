@@ -24,10 +24,9 @@ function displayResults(responseJson) {
     $('#results').removeClass('hidden');
 }
 
-function renderParkList(query, userStateCode, maxResults=10) {
+function renderParkList(userStateCode, maxResults=10) {
     const params = {
       api_key: apiKey,
-      q: query,
       stateCode: userStateCode,
       limit: maxResults
     };
@@ -53,10 +52,10 @@ function watchForm() {
   $('form').submit(event => {
     event.preventDefault();
     $('#results-list').empty();
-    const searchTerm = $('#searchNatlParks').val();
+    // const searchTerm = $('#searchNatlParks').val();
     const maxResults = $('#js-max-results').val();
-    const stateCode = $('#userStateCode').val();
-    renderParkList(searchTerm, stateCode, maxResults);
+    const stateCode = $('#userStateCode').val().replace(' ','');
+    renderParkList(stateCode, maxResults);
   });
 }
 
